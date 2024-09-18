@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    
+    <div class="container" >
+        <h1>User Management</h1>
+        <div class="form-container">
+        <form id="userForm">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            
+           
+                <label for="userProfile">User Profile (Photo):</label>
+                <input type="file" id="userProfile" name="userProfile" accept="image/*"  >
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-buttons">
+                <button type="submit" id="addUserBtn">Add User</button>
+                <button type="reset">Reset</button>
+            </div>
+        </form>
+    </div>
+
+        <input type="text" id="searchInput" placeholder="Search by name, email, or ID">
+        <button id="searchButton">Search</button>
+
+        <table id="userTable">
+            <thead>
+                <tr>
+                    <th>Profile</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <% users.forEach(user => { %>
+                    <tr data-id="<%= user._id %>">
+                        <td><img src="<%= user.userProfile %>" alt="Profile"></td>
+                        <td><%= user.username %></td>
+                        <td><%= user.email %></td>
+                        <td><%= user.phone %></td>
+                        <td>
+                            <button class="edit-btn" onclick="editUser('<%= user._id %>')">Edit</button>
+                            <button class="delete-btn" onclick="deleteUser('<%= user._id %>')">Delete</button>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+            
+        </table>
+    </div>
+    <div id="pagination">/</div>
+    
+   
+       
+    
+    
+    <script src="/js/index.js"></script>
+</body>
+</html>
